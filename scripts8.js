@@ -45,7 +45,15 @@ function mydataUp(unEMPDATA){       //unEMPDATA is the local name for the JSON f
 
 }
 
-
+function displayNewData(e){      //e is my click event handler; i'll use it to target the data URL based on my button
+	var ID=e.target.id; //e.g. "year_2000"
+	console.log(ID);  //to check if my variable and function are working
+    var ArrayName=ID.split("_");	//splits it into an array, "2000" will be second
+    var Year = ArrayName[1]; //This grabs the year
+    $.get(TableUrl+"'"+Year+"-12-01'"+Key, mydataUp, "json"); 
+    
+    History.pushState({year:Year}, "Unemployment from - "+Year,"?year="+Year);
+}
 
 function myGoogleUp() {       //This is my function to retrieve my Google data
 
